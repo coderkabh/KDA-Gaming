@@ -1,7 +1,6 @@
 
 $(function () {
     var anim_id;
-    //saving dom objects to variables
     var container = $('#container'),
     car = $('#car'),
     car_1 = $('#car_1'),
@@ -166,7 +165,3 @@ $(function () {
     return true;
 }
 });
-
-    document.getElementById("return").onclick = function () {
-    location.href = "Main_menu.html";
-};
