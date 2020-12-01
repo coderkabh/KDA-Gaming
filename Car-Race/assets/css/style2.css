@@ -48,7 +48,7 @@ html {
 }
 
 .pic {
-    background-image: url("bg.jpg");
+    background-image: url("../images/bg.jpg");
     height: 100%;
 
     background-position: center;
