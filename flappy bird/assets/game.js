@@ -36,6 +36,7 @@ let ground =  {
     h:112,
     x:0,
     y:cnvs.height-112,
+    dx:3,
     draw:function()
     {
         context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
@@ -45,6 +46,14 @@ let ground =  {
         context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(4*this.w),this.y,this.w,this.h);
         context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(5*this.w),this.y,this.w,this.h);
         context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(6*this.w),this.y,this.w,this.h);
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(7*this.w),this.y,this.w,this.h);
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(8*this.w),this.y,this.w,this.h);
+    },
+    update:function(){
+            this.x=this.x-this.dx;
+            if(this.x % 112==0){
+                this.x=0;
+            }
     }
 
 }
@@ -54,10 +63,15 @@ function draw()
     cloud.draw();
     ground.draw();
 }
+
+function update()
+{
+    ground.update();
+}
 function loop(){
       
     draw();
-   
+   update();
     requestAnimationFrame(loop);
 
 }
