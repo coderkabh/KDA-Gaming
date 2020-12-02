@@ -1,7 +1,7 @@
 let cnvs = document.getElementById("canvas");
 let context= cnvs.getContext("2d");
 
-
+let frames=0;
 let image = new Image();
 image.src="assets/images/MainImg.png"; 
 
@@ -55,6 +55,22 @@ let ground =  {
     }
 
 }
+const bird={
+    animationOfBird:[
+            {sX:276,sY:112},
+            {sX:276,sY:139},
+            {sX:276,sY:164},
+            {sX:276,sY:139} ],
+            x:50,y:150,w:34,h:26,frame:0,period:5,
+            draw:function(){
+                    let bird=this.animationOfBird[this.frame];
+                    context.drawImage(image,bird.sX,bird.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+            },
+            update:function(){
+                this.frame+=frames%this.period==0 ? 1:0;
+                this.frame=this.frame%this.animationOfBird.length;
+            }
+}
 
 function draw() 
 {
@@ -62,16 +78,19 @@ function draw()
     context.fillRect(0,0,cnvs.clientWidth,cnvs.height);
     cloud.draw();
     ground.draw();
+    bird.draw();
 }
 
 function update()
 {
     ground.update();
+    bird.update();
 }
 function loop(){
       
     draw();
    update();
+   frames--;
     requestAnimationFrame(loop);
 
 }
