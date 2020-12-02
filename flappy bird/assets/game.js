@@ -28,9 +28,31 @@ let cloud=  {
 
 }
 
+let ground =  {
+
+    sX:276,
+    sY:0,
+    w:224,
+    h:112,
+    x:0,
+    y:cnvs.height-112,
+    draw:function()
+    {
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+this.w,this.y,this.w,this.h);
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(2*this.w),this.y,this.w,this.h);
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(3*this.w),this.y,this.w,this.h);
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(4*this.w),this.y,this.w,this.h);
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(5*this.w),this.y,this.w,this.h);
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(6*this.w),this.y,this.w,this.h);
+    }
+
+}
+
 function draw() 
 {
     cloud.draw();
+    ground.draw();
 }
 function loop(){
       
