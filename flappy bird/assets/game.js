@@ -2,8 +2,6 @@ let cnvs = document.getElementById("canvas");
 let context= cnvs.getContext("2d");
 
 
-cnvs.style.backgroundColor="skyblue";
-
 let image = new Image();
 image.src="assets/images/MainImg.png"; 
 
@@ -60,6 +58,8 @@ let ground =  {
 
 function draw() 
 {
+    context.fillStyle="#70c5ce";
+    context.fillRect(0,0,cnvs.clientWidth,cnvs.height);
     cloud.draw();
     ground.draw();
 }
