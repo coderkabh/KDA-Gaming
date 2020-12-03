@@ -31,4 +31,7 @@ class GameBoard{
             
         });
     }
+    addobject(pos,classes){
+        this.grid[pos].classList.add(...classes);
+    }
 }
