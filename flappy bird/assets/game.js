@@ -101,10 +101,12 @@ let ground =  {
         context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x+(8*this.w),this.y,this.w,this.h);
     },
     update:function(){
+        if(state.current==state.game){
             this.x=this.x-this.dx;
             if(this.x % 112==0){
                 this.x=0;
             }
+        }
     }
 
 }
