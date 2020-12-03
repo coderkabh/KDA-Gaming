@@ -34,4 +34,7 @@ class GameBoard{
     addobject(pos,classes){
         this.grid[pos].classList.add(...classes);
     }
+    removeobject(pos,classes){
+        this.grid[pos].classList.remove(...classes);
+    }
 }
