@@ -134,10 +134,13 @@ const bird={
                 }    
                 if(this.y+this.h/2>=cnvs.height-ground.h){
                     this.speed=0;
+                    this.frame=0;  
+                    state.current=state.gameOver;
                 }
             },
             move:function(){
-                   this.speed = -this.jump;     
+                   this.speed = -this.jump;
+                      
             }
 }
 
