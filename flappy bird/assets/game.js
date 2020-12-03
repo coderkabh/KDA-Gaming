@@ -5,6 +5,19 @@ let frames=0;
 let image = new Image();
 image.src="assets/images/MainImg.png"; 
 
+const getReady={
+    sX:0,
+    sY:220,
+    w:173,
+    h:152,
+    x:cnvs.width/2-(173/2),
+    y:200,
+    draw:function()
+    {
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+    }
+}
+
 
 let cloud=  {
 
@@ -79,6 +92,7 @@ function draw()
     cloud.draw();
     ground.draw();
     bird.draw();
+    getReady.draw();
 }
 
 function update()
