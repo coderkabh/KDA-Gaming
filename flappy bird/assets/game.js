@@ -5,6 +5,27 @@ let frames=0;
 let image = new Image();
 image.src="assets/images/MainImg.png"; 
 
+const state = {
+    current:0,
+    getReady:0,
+    game:1,
+    gameOver:2,
+}
+cnvs.addEventListener("click",function(){
+    switch(state.current){
+        case state.getReady:
+            state.current= state.game;
+            break;
+        case  state.game:
+            bird.move();
+            break;
+        case state.gameOver:
+            state.current=state.getReady;
+            break;   
+    }
+
+})
+
 const getReady={
     sX:0,
     sY:220,
@@ -14,7 +35,11 @@ const getReady={
     y:200,
     draw:function()
     {
+        if(state.current==state.getReady){
+
+        
         context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+        }
     }
 }
 
@@ -27,7 +52,9 @@ const gameOver={
     y:200,
     draw:function()
     {
-        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+        if(state.current==state.gameOver){
+ context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+        }
     }
 }
 
@@ -95,6 +122,9 @@ const bird={
             update:function(){
                 this.frame+=frames%this.period==0 ? 1:0;
                 this.frame=this.frame%this.animationOfBird.length;
+            },
+            move:function(){
+
             }
 }
 
