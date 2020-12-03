@@ -11,10 +11,10 @@ const state = {
     game:1,
     gameOver:2,
 }
-cnvs.addEventListener("click",function(){
+cnvs.addEventListener("click",function(event){
     switch(state.current){
         case state.getReady:
-            state.current= state.game;
+            state.current = state.game;
             break;
         case  state.game:
             bird.move();
@@ -24,7 +24,7 @@ cnvs.addEventListener("click",function(){
             break;   
     }
 
-})
+});
 
 const getReady={
     sX:0,
@@ -144,11 +144,60 @@ const bird={
             }
 }
 
+const pipes={
+    position:[],
+    top:{
+        sX:553,
+        sY:0
+    },
+    bottom:{
+        sX:502,
+        sY:0
+    },
+    w:53,
+    h:400,
+    gapBtwPipes:120,
+    maxYPos:-150,
+    dx:3,
+
+    draw:function(){
+        for(let i=0;i<this.position.length;i++){
+            let p=this.position[i];
+
+            let topYPos = p.y;
+            let bottomYPos = p.y + this.h + this.gapBtwPipes;
+            
+            context.drawImage(image, this.top.sX, this.top.sY, this.w, this.h, p.x, topYPos, this.w, this.h);  
+            
+            context.drawImage(image, this.bottom.sX, this.bottom.sY, this.w, this.h, p.x, bottomYPos, this.w, this.h);  
+        }
+    },
+    update:function(){
+        if(state.current !== state.game){
+            return;
+        }
+        if(frames%100 == 0){
+            this.position.push(
+                {
+                    x:cnvs.width,
+                    y:this.maxYPos*(Math.random()+1)
+                });
+        }
+        for(let i=0;i<this.position.length;i++){
+            let p=this.position[i];
+            p.x=p.x-this.dx;
+        }
+}
+}
+    
+  
+
 function draw() 
 {
     context.fillStyle="#70c5ce";
     context.fillRect(0,0,cnvs.clientWidth,cnvs.height);
     cloud.draw();
+    pipes.draw();
     ground.draw();
     bird.draw();
     getReady.draw();
@@ -159,6 +208,7 @@ function update()
 {
     ground.update();
     bird.update();
+    pipes.update();
 }
 function loop(){
       
