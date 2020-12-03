@@ -18,6 +18,19 @@ const getReady={
     }
 }
 
+const gameOver={
+    sX:175,
+    sY:228,
+    w:225,
+    h:202,
+    x:cnvs.width/2-(225/2),
+    y:200,
+    draw:function()
+    {
+        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+    }
+}
+
 
 let cloud=  {
 
@@ -93,6 +106,7 @@ function draw()
     ground.draw();
     bird.draw();
     getReady.draw();
+    gameOver.draw();
 }
 
 function update()
