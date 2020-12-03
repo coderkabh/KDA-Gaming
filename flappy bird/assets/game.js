@@ -35,9 +35,7 @@ const getReady={
     y:200,
     draw:function()
     {
-        if(state.current==state.getReady){
-
-        
+        if(state.current==state.getReady){  
         context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
         }
     }
@@ -117,16 +115,29 @@ const bird={
             {sX:276,sY:164},
             {sX:276,sY:139} ],
             x:50,y:150,w:34,h:26,frame:0,period:5,
+            speed:0,gravity:0.20,jump:4.6,
+
             draw:function(){
                     let bird=this.animationOfBird[this.frame];
-                    context.drawImage(image,bird.sX,bird.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+                    context.drawImage(image,bird.sX,bird.sY,this.w,this.h,this.x-this.w/2,this.y-this.h/2,this.w,this.h);
             },
             update:function(){
                 this.frame+=frames%this.period==0 ? 1:0;
                 this.frame=this.frame%this.animationOfBird.length;
+
+                if(state.current==state.getReady){
+                    this.y=150;
+                }
+                else{
+                    this.y=this.y+this.speed;
+                    this.speed=this.speed+this.gravity;
+                }    
+                if(this.y+this.h/2>=cnvs.height-ground.h){
+                    this.speed=0;
+                }
             },
             move:function(){
-
+                   this.speed = -this.jump;     
             }
 }
 
