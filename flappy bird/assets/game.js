@@ -161,7 +161,7 @@ const pipes={
     },
     w:53,
     h:400,
-    gapBtwPipes:120,
+    gapBtwPipes:150,
     maxYPos:-150,
     dx:3,
 
@@ -194,6 +194,8 @@ const pipes={
 
             if(p.x+this.w<=0){
                 this.position.shift();
+
+                score.value=score.value+1
             }
             if(bird.x+bird.radius>p.x && bird.x-bird.radius<p.x+this.w && 
                 bird.y+bird.radius>p.y && bird.y-bird.radius<p.y+this.h){
@@ -250,6 +252,18 @@ const ball={
     }
 }
 
+const score={
+    value:0,
+    draw:function(){
+            context.fillStyle="black";
+            if(state.current==state.game){
+                context.font="50px teko";
+                context.fillText(this.value,cnvs.width/2,100);
+            }
+           
+    }
+}
+
     
   
 
@@ -264,6 +278,7 @@ function draw()
     bird.draw();
     getReady.draw();
     gameOver.draw();
+    score.draw();
 }
 
 function update()
