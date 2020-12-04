@@ -2,8 +2,12 @@ let cnvs = document.getElementById("canvas");
 let context= cnvs.getContext("2d");
 
 let frames=0;
+
 let image = new Image();
 image.src="assets/images/MainImg.png"; 
+
+let criket= new Image();
+criket.src="assets/images/cricket.png";
 
 const state = {
     current:0,
@@ -206,6 +210,46 @@ const pipes={
         }
 }
 }
+
+const ball={
+    ball_pos:[],
+    w:30,h:30,sX:0,sY:0,dx:4,
+
+    draw:function(){
+        for(let i=0;i<this.ball_pos.length;i++){
+            let p=this.ball_pos[i];
+            context.drawImage(criket,this.sX,this.sY,2000,2000,p.x,p.y,this.w,this.h);
+        }
+    },
+    update:function(){
+            if(state.current!==state.game){
+                return;
+            }
+            if(frames%100==0){
+                this.ball_pos.push(
+                    {
+                        x:cnvs.width,
+                        y:Math.random()*400,
+                    }
+                );
+            }
+            for(let i=0;i<this.ball_pos.length;i++){
+                let p=this.ball_pos[i];
+                p.x=p.x-this.dx;
+
+                if(p.x+ this.w<=0){
+                    this.ball_pos.shift();
+                }
+
+                if(bird.x+bird.radius>p.x && bird.x-bird.radius<p.x+this.w && 
+                    bird.y+bird.radius>p.y && bird.y-bird.radius<p.y+this.h){
+                        state.current=state.gameOver;
+                    }
+            }
+
+    }
+}
+
     
   
 
@@ -215,6 +259,7 @@ function draw()
     context.fillRect(0,0,cnvs.clientWidth,cnvs.height);
     cloud.draw();
     pipes.draw();
+    ball.draw();
     ground.draw();
     bird.draw();
     getReady.draw();
@@ -226,6 +271,7 @@ function update()
     ground.update();
     bird.update();
     pipes.update();
+    ball.update();
 }
 function loop(){
       
