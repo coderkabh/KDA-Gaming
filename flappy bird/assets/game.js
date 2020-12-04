@@ -195,7 +195,14 @@ const pipes={
                 bird.y+bird.radius>p.y && bird.y-bird.radius<p.y+this.h){
                     state.current=state.gameOver;
                 }
-            //  if()   
+
+                let tobp=p.y+this.h+this.gapBtwPipes;
+                let bopb=p.y+this.h+this.gapBtwPipes+this.h;
+            if(bird.x+bird.radius>p.x && bird.x-bird.radius<p.x+this.w && 
+                    bird.y+bird.radius>tobp && bird.y-bird.radius<bopb)
+                    {
+                        state.current=state.gameOver;
+                    } 
         }
 }
 }
