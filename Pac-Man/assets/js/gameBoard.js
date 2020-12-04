@@ -45,4 +45,12 @@ class GameBoard{
     rotateDiv(pos,deg){
         this.grid[pos].style.transform = `rotate(${deg}deg)`;
     }
+
+    static createGameBoard(DOMGrid,level){
+        const board = new this(DOMGrid);
+        board.createGrid(level);
+        return board;
+    }
 }
+
+export default GameBoard;

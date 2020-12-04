@@ -1,13 +1,15 @@
 import {LEVEL , OBJECT_TYPE} from '../Pac-Man-setup';
+import gameBoard from './gameBoard';
 
 //DOM ELEMENTS
 const gameGrid = document.querySelector('#game');
 const scoreTable = document.querySelector('#score');
-const startButton = document.querySelector('start-button');
+const startButton = document.querySelector('#start-button');
 
 // game const
 const POWER_PILL_TIME = 10000; // in ms
 const GLOBAL_SPEED = 80; // global speed for the game loop in ms
+const gameBoard = gameBoard.createGameBoard(gameBoard,LEVEL);
 
 //initial setup
 //something to hold our scores
