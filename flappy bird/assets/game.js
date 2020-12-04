@@ -20,18 +20,33 @@ cnvs.addEventListener("click",function(event){
         case state.getReady:
             state.current = state.game;
             break;
-        case  state.game:
+        case state.game:
             bird.move();
             break;
         case state.gameOver:
-            state.current=state.getReady;
-            pipes.reset();
-            ball.reset();
-            score.reset();
+            let cnvsPosition=cnvs.getBoundingClientRect();
+
+            let clickX = event.clientX - cnvsPosition.left;
+            let clickY = event.clientY-cnvsPosition.top;
+
+            if(clickX>startbtn.x && clickX<startbtn.x+startbtn.w && clickY>startbtn.y &&
+                clickY<startbtn.y+startbtn.h){
+                    state.current=state.getReady;
+                    pipes.reset();
+                    ball.reset();
+                    score.reset();
+                }
+            
             break;   
     }
 
 });
+const startbtn={
+    x:720,
+    y:373,
+    w:83,
+    h:29,
+}
 
 const getReady={
     sX:0,
