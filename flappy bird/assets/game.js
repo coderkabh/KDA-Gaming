@@ -1,5 +1,9 @@
 let cnvs = document.getElementById("canvas");
 let context= cnvs.getContext("2d");
+let fire1 = document.getElementById("fire1");
+let fire2 = document.getElementById("fire2");
+
+
 
 let frames=0;
 
@@ -74,8 +78,11 @@ const getReady={
     y:200,
     draw:function()
     {
-        if(state.current==state.getReady){  
-        context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+        if(state.current==state.getReady)
+        {  
+            context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+            fire1.style.display="none";
+            fire2.style.display="none";
         }
     }
 }
@@ -90,7 +97,9 @@ const gameOver={
     draw:function()
     {
         if(state.current==state.gameOver){
- context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+            context.drawImage(image,this.sX,this.sY,this.w,this.h,this.x,this.y,this.w,this.h);
+            fire1.style.display="block";
+            fire2.style.display="block";
         }
     }
 }
