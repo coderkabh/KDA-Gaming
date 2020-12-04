@@ -195,7 +195,10 @@ const pipes={
             if(p.x+this.w<=0){
                 this.position.shift();
 
-                score.value=score.value+1
+                score.value=score.value+1;
+                score.best=Math.max(score.value,score.best);
+
+                localStorage.setItem("best",score.best);
             }
             if(bird.x+bird.radius>p.x && bird.x-bird.radius<p.x+this.w && 
                 bird.y+bird.radius>p.y && bird.y-bird.radius<p.y+this.h){
@@ -253,14 +256,22 @@ const ball={
 }
 
 const score={
+
+    best:parseInt(localStorage.getItem("best")) || 0,
     value:0,
     draw:function(){
             context.fillStyle="black";
             if(state.current==state.game){
                 context.font="50px teko";
                 context.fillText(this.value,cnvs.width/2,100);
-            }
-           
+            }     
+             else if(state.current==state.gameOver){
+                context.font="30px teko";
+                context.fillText(this.value,cnvs.width/2+65,300);
+
+                context.font="30px teko";
+                context.fillText(this.best,cnvs.width/2+65,340);
+             }
     }
 }
 
