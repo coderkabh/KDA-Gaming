@@ -9,6 +9,21 @@ image.src="assets/images/MainImg.png";
 let criket= new Image();
 criket.src="assets/images/cricket.png";
 
+let flap=new Audio();
+flap.src="assets/audio/flap.wav";
+
+let point=new Audio();
+point.src="assets/audio/point.wav";
+
+let hit=new Audio();
+hit.src="assets/audio/hit.wav";
+
+let die=new Audio();
+die.src="assets/audio/die.wav";
+
+let swooshing=new Audio();
+swooshing.src="assets/audio/swooshing.wav";
+
 const state = {
     current:0,
     getReady:0,
@@ -19,9 +34,11 @@ cnvs.addEventListener("click",function(event){
     switch(state.current){
         case state.getReady:
             state.current = state.game;
+            swooshing.play();
             break;
         case state.game:
             bird.move();
+            flap.play();
             break;
         case state.gameOver:
             let cnvsPosition=cnvs.getBoundingClientRect();
@@ -160,7 +177,11 @@ const bird={
                 if(this.y+this.h/2>=cnvs.height-ground.h){
                     this.speed=0;
                     this.frame=0;  
-                    state.current=state.gameOver;
+                    if(state.current==state.game){
+                        state.current=state.gameOver;
+                        die.play();
+                    }
+                    
                 }
             },
             move:function(){
@@ -214,7 +235,7 @@ const pipes={
 
             if(p.x+this.w<=0){
                 this.position.shift();
-
+                point.play();
                 score.value=score.value+1;
                 score.best=Math.max(score.value,score.best);
 
@@ -222,6 +243,7 @@ const pipes={
             }
             if(bird.x+bird.radius>p.x && bird.x-bird.radius<p.x+this.w && 
                 bird.y+bird.radius>p.y && bird.y-bird.radius<p.y+this.h){
+                    hit.play();
                     state.current=state.gameOver;
                 }
 
@@ -230,6 +252,7 @@ const pipes={
             if(bird.x+bird.radius>p.x && bird.x-bird.radius<p.x+this.w && 
                     bird.y+bird.radius>tobp && bird.y-bird.radius<bopb)
                     {
+                        hit.play();
                         state.current=state.gameOver;
                     } 
         }
@@ -272,6 +295,7 @@ const ball={
 
                 if(bird.x+bird.radius>p.x && bird.x-bird.radius<p.x+this.w && 
                     bird.y+bird.radius>p.y && bird.y-bird.radius<p.y+this.h){
+                        hit.play();
                         state.current=state.gameOver;
                     }
             }
