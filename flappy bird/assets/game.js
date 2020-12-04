@@ -25,6 +25,9 @@ cnvs.addEventListener("click",function(event){
             break;
         case state.gameOver:
             state.current=state.getReady;
+            pipes.reset();
+            ball.reset();
+            score.reset();
             break;   
     }
 
@@ -127,6 +130,8 @@ const bird={
                     context.drawImage(image,bird.sX,bird.sY,this.w,this.h,this.x-this.w/2,this.y-this.h/2,this.w,this.h);
             },
             update:function(){
+
+                this.period=state.current==state.getReady?10:5;
                 this.frame+=frames%this.period==0 ? 1:0;
                 this.frame=this.frame%this.animationOfBird.length;
 
@@ -213,6 +218,10 @@ const pipes={
                         state.current=state.gameOver;
                     } 
         }
+},
+reset:function(){
+    this.position=[];
+
 }
 }
 
@@ -252,6 +261,9 @@ const ball={
                     }
             }
 
+    },
+    reset:function(){
+        this.ball_pos=[];
     }
 }
 
@@ -272,6 +284,9 @@ const score={
                 context.font="30px teko";
                 context.fillText(this.best,cnvs.width/2+65,340);
              }
+    },
+    reset:function(){
+        this.value=0;
     }
 }
 
