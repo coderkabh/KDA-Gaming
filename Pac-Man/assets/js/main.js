@@ -31,3 +31,13 @@ function checkCollision(pacman , ghosts){
 function gameLoop(pacman , ghosts){
 
 }
+
+function startGame(){
+    gameWin = false;
+    powerPillActive = false;
+    score = 0;
+    startButton.classList.add('hide')
+
+}
+
+startButton.addEventListener('click',startGame);
