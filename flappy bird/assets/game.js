@@ -215,6 +215,7 @@ function loop(){
     draw();
    update();
    frames--;
+   
     requestAnimationFrame(loop);
 
 }
