@@ -1,0 +1,23 @@
+body{
+    background: url('../image/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+h1{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 20px;
+    font-weight: bolder;
+    color: yellow;
+    font-size: 40px;
+}
+h2{
+    position: absolute;
+    top: 79%;
+    left: 29%;
+    color: white;
+}
