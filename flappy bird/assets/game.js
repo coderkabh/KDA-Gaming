@@ -163,7 +163,7 @@ const bird={
             {sX:276,sY:164},
             {sX:276,sY:139} ],
             x:50,y:150,w:34,h:26,frame:0,period:5,
-            speed:0,gravity:0.20,jump:4.6,
+            speed:0,gravity:0.20,jump:4.3,
             radius:13,
 
             draw:function(){
@@ -211,7 +211,7 @@ const pipes={
     },
     w:53,
     h:400,
-    gapBtwPipes:150,
+    gapBtwPipes:170,
     maxYPos:-150,
     dx:3,
 
