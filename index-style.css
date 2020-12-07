@@ -5,7 +5,11 @@ body{
 .card-title, .card-text{
     color: black;
 }
- .dropdown-item:hover{
-     background-color: #292929;
- }
+.dropdown-item:hover{
+    background-color: #292929;
+}
+.link-para{
+    font-size: 72px;
+}
+
 /*font-family: 'Texturina', serif;*/
