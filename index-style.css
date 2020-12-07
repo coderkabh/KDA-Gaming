@@ -1,6 +1,10 @@
 body{
     background-color: #403c3c;
     color: white;
+
+}
+*{
+    font-family: 'Texturina', serif;
 }
 .card-title, .card-text{
     color: black;
